@@ -1,3 +1,31 @@
-# Code Editor directories and files
-.idea
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# Dependency directories
+node_modules/
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# dotenv environment variables file
 .env
+
+# IntelliJ
+.idea
+*.iml
+
+secrets.yaml
+
+# c8 test coverage
+/extension/coverage/tmp/
+/notification/coverage/tmp/
+
+*.zip
+.extensionrc
+.notificationrc
+/sources/
