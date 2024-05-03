@@ -1,0 +1,97 @@
+[
+  {
+    "type": "webhook",
+    "event": "standalone_fraud_check_success",
+    "transaction_only": false
+  },
+  {
+    "type": "webhook",
+    "event": "standalone_fraud_check_in_review_async_approved",
+    "transaction_only": false
+  },
+  {
+    "type": "webhook",
+    "event": "standalone_fraud_check_in_review_async_declined",
+    "transaction_only": false
+  },
+  {
+    "type": "webhook",
+    "event": "fraud_check_transaction_in_review_declined",
+    "transaction_only": false
+  },
+  {
+    "type": "webhook",
+    "event": "fraud_check_transaction_in_review_approved",
+    "transaction_only": false
+  },
+  {
+    "type": "webhook",
+    "event": "fraud_check_failed",
+    "transaction_only": false
+  },
+  {
+    "type": "webhook",
+    "event": "fraud_check_success",
+    "transaction_only": false
+  },
+  {
+    "type": "webhook",
+    "event": "fraud_check_transaction_in_review_async_declined",
+    "transaction_only": false
+  },
+  {
+    "type": "webhook",
+    "event": "fraud_check_transaction_in_review_async_approved",
+    "transaction_only": false
+  },
+  {
+    "type": "webhook",
+    "event": "fraud_check_in_review_async_declined",
+    "transaction_only": false
+  },
+  {
+    "type": "webhook",
+    "event": "fraud_check_in_review_async_approved",
+    "transaction_only": false
+  },
+  {
+    "type": "webhook",
+    "event": "fraud_check_in_review",
+    "transaction_only": false
+  },
+  {
+    "type": "webhook",
+    "event": "standalone_fraud_check_failed",
+    "transaction_only": false
+  },
+  {
+    "type": "webhook",
+    "event": "standalone_fraud_check_in_review",
+    "transaction_only": false
+  },
+  {
+    "type": "webhook",
+    "event": "refund_failure",
+    "transaction_only": false
+  },
+  {
+    "type": "webhook",
+    "event": "refund_success",
+    "transaction_only": false
+  },
+  {
+    "type": "webhook",
+    "event": "refund_requested",
+    "transaction_only": false
+  },
+  {
+    "type": "webhook",
+    "event": "standalone_fraud_check_in_review_declined",
+    "transaction_only": false
+  },
+  {
+    "type": "webhook",
+    "event": "transaction_success",
+    "transaction_only": false
+  }
+]

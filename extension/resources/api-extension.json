@@ -1,0 +1,15 @@
+{
+  "key": "paydock-pay-integration-payment-extension",
+  "destination": {
+    "type": "HTTP",
+    "url": "${ctpPaydockIntegrationBaseUrl}"
+  },
+  "triggers": [
+    {
+      "resourceTypeId": "payment",
+      "actions": ["Create", "Update"],
+      "condition": "paymentMethodInfo is defined AND paymentMethodInfo(paymentInterface is defined) AND paymentMethodInfo(method=\"paydock-pay\")"
+    }
+  ],
+  "timeoutInMs": 10000
+}

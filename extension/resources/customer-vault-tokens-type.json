@@ -1,0 +1,22 @@
+{
+  "key": "paydock-components-customer-vault-type",
+  "name": {
+    "en": "Paydock Vault Tokens for Customer"
+  },
+  "resourceTypeIds": [
+    "customer"
+  ],
+  "fieldDefinitions": [
+    {
+      "name": "userVaultTokens",
+      "label": {
+        "en": "User Vault Tokens"
+      },
+      "type": {
+        "name": "String"
+      },
+      "inputHint": "MultiLine",
+      "required": false
+    }
+  ]
+}

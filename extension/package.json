@@ -1,0 +1,97 @@
+{
+  "name": "commercetools-paydock-integration-extension",
+  "version": "1.0.0",
+  "description": "Integration between commercetools and Paydock payment service provider",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "test": "npm run unit",
+    "test-ci": "c8 npm run test-run && npm run check-coverage",
+    "test-run": "npm run unit && npm run integration",
+    "check-coverage": "c8 check-coverage --lines 89",
+    "unit": "mocha --file ./test/unit/mock-default-confg.js \"test/unit/**/*.spec.js\"",
+    "integration": "mocha --file ./test/initial-integration-test-set-up.js \"test/integration/**/*.spec.js\"",
+    "e2e": "mocha --file ./test/initial-integration-test-set-up.js \"test/e2e/**/*.spec.js\"",
+    "start": "node ./src/init.js",
+    "lint": "eslint --quiet ./src ./test",
+    "check": "npm run lint && prettier --check .",
+    "doctoc": "doctoc --title '' . --github",
+    "format": "prettier --write .",
+    "zip-google-function": "cp index.googleFunction.js index.js && zip -r extension-module.zip src resources .extensionrc index.js package.json && rm index.js",
+    "zip-lambda-function": "cp index.lambda.js index.js && npm ci --production && zip -r extension-module.zip . && rm index.js",
+    "zip-azure-function": "cp extension-trigger/index.azureFunction.js extension-trigger/index.js && npm ci --production && zip -r extension-module.zip . && rm extension-trigger/index.js",
+    "setup-resources": "run-func ./src/setup.js setupExtensionResources"
+  },
+  "keywords": [
+    "Paydock",
+    "commercetools",
+    "payment",
+    "payment integration",
+    "payment provider"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jspteampaydock/paydock-payment-conector"
+  },
+  "author": {
+    "name": "commercetools Professional Services",
+    "email": "ps-dev@commercetools.com"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "contributors": [],
+  "bugs": {
+    "url": "https://github.com/jspteampaydock/paydock-payment-conector"
+  },
+  "homepage": "https://github.com/jspteampaydock/paydock-payment-conector",
+  "devDependencies": {
+    "c8": "8.0.1",
+    "chai": "4.4.1",
+    "chai-as-promised": "7.1.1",
+    "doctoc": "2.2.1",
+    "eslint": "8.57.0",
+    "eslint-config-airbnb-base": "15.0.0",
+    "eslint-config-prettier": "9.1.0",
+    "eslint-plugin-import": "2.29.1",
+    "husky": "8.0.3",
+    "lint-staged": "15.2.2",
+    "localtunnel": "2.0.2",
+    "mocha": "10.3.0",
+    "nock": "13.5.3",
+    "prettier": "3.2.5",
+    "proxyquire": "2.1.3",
+    "puppeteer": "21.11.0",
+    "sinon": "17.0.1"
+  },
+  "dependencies": {
+    "@commercetools/api-request-builder": "6.0.0",
+    "@commercetools/sdk-client": "3.0.0",
+    "@commercetools/sdk-middleware-auth": "7.0.1",
+    "@commercetools/sdk-middleware-http": "7.0.4",
+    "@commercetools/sdk-middleware-queue": "3.0.0",
+    "@commercetools/sdk-middleware-user-agent": "3.0.0",
+    "@commercetools/sync-actions": "5.15.0",
+    "bunyan": "1.8.15",
+    "dotenv": "^16.4.5",
+    "lockfile-lint": "4.13.2",
+    "lodash": "4.17.21",
+    "node-fetch": "3.3.2",
+    "rc": "1.2.8",
+    "run-func": "3.0.0",
+    "serialize-error": "11.0.3"
+  },
+  "mocha": {
+    "timeout": 300000,
+    "full-trace": true
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.js": "eslint --cache --fix",
+    "*.{js,css,md}": "prettier --write ."
+  }
+}

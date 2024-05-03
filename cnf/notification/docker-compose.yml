@@ -1,0 +1,56 @@
+version: "3.8"
+
+services:
+
+  paydock-notification:
+    image: $IMAGE/notification:${CI_COMMIT_SHA}
+    deploy:
+      replicas: 1
+      update_config:
+        parallelism: 1
+        delay: 5s
+        failure_action: rollback
+        order: stop-first
+      restart_policy:
+        condition: any
+        delay: 5s
+      resources:
+        limits:
+          cpus: '2.0'
+          memory: 2000M
+      labels:
+        - "traefik.enable=true"
+        - "traefik.http.routers.jsp_paydock-notification.entrypoints=web,websecure"
+        - "traefik.http.routers.jsp_paydock-notification.rule=Host(`jsp-paydock-notification.itprosteer.com`)"
+        - "traefik.http.routers.jsp_paydock-notification.tls=true"
+        - "traefik.http.routers.jsp_paydock-notification.tls.certresolver=leresolver"
+        - "traefik.http.routers.jsp_paydock-notification.middlewares=serviceheaders"
+        - "traefik.http.services.jsp_paydock-notification.loadbalancer.server.port=3003"
+        - "stackname=paydock-notification"
+        - "filebeat_enable=true"
+    labels:
+      - "filebeat_enable=true"
+    ports:
+      - target: 8443
+        published: 8443
+        mode: host
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+    environment:
+      - "CONNECT_SERVICE_URL_NOTIFICATION=$CONNECT_SERVICE_URL_NOTIFICATION"
+    networks:
+      - proxy
+      - data
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "1M"
+        max-file: "5"
+
+networks:
+  proxy:
+    external: true
+    name: net_proxy
+  data:
+    external: true
+    name: net_data

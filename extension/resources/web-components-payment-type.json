@@ -1,0 +1,275 @@
+{
+  "key": "paydock-components-payment-type",
+  "name": {
+    "en": "commercetools paydock integration payment custom type based on web components"
+  },
+  "resourceTypeIds": ["payment"],
+  "fieldDefinitions": [
+    {
+      "name": "commercetoolsProjectKey",
+      "label": {
+        "en": "commercetoolsProjectKey"
+      },
+      "type": {
+        "name": "String"
+      },
+      "inputHint": "SingleLine",
+      "required": false
+    },
+    {
+      "name": "PaydockPaymentStatus",
+      "label": {
+        "en": "Paydock payment status"
+      },
+      "required": false,
+      "type": {
+        "name": "Enum",
+        "values": [
+          {
+            "key": "paydock-pending",
+            "label": "Pending via Paydock"
+          },
+          {
+            "key": "paydock-paid",
+            "label": "Paid via Paydock"
+          },
+          {
+            "key": "paydock-authorize",
+            "label": "Authorized via Paydock"
+          },
+          {
+            "key": "paydock-cancelled",
+            "label": "Cancelled authorize via Paydock"
+          },
+          {
+            "key": "paydock-refunded",
+            "label": "Refunded via Paydock"
+          },
+          {
+            "key": "paydock-p-refund",
+            "label": "Partial refunded via Paydock"
+          },
+          {
+            "key": "paydock-requested",
+            "label": "Requested via Paydock"
+          },
+          {
+            "key": "paydock-failed",
+            "label": "Fail via Paydock"
+          }
+        ]
+      },
+      "inputHint": "SingleLine"
+    },
+    {
+      "name": "PaydockTransactionId",
+      "label": {
+        "en": "paydock transaction ID"
+      },
+      "required": false,
+      "type": {
+        "name": "String"
+      },
+      "inputHint": "SingleLine"
+    },
+    {
+      "name": "PaydockPaymentType",
+      "label": {
+        "en": "payment type"
+      },
+      "required": false,
+      "type": {
+        "name": "String"
+      },
+      "inputHint": "SingleLine"
+    },
+    {
+      "name": "CommerceToolsUserId",
+      "label": {
+        "en": "commerce tools user id"
+      },
+      "required": false,
+      "type": {
+        "name": "String"
+      },
+      "inputHint": "SingleLine"
+    },
+    {
+      "name": "SaveCard",
+      "label": {
+        "en": "Save Card"
+      },
+      "required": false,
+      "type": {
+        "name": "Boolean"
+      },
+      "inputHint": "SingleLine"
+    },
+    {
+      "name": "VaultToken",
+      "label": {
+        "en": "Vault token"
+      },
+      "required": false,
+      "type": {
+        "name": "String"
+      },
+      "inputHint": "SingleLine"
+    },
+    {
+      "name": "AdditionalInformation",
+      "label": {
+        "en": "Additional information"
+      },
+      "required": false,
+      "type": {
+        "name": "String"
+      },
+      "inputHint": "MultiLine"
+    },
+    {
+      "name": "getPaymentMethodsRequest",
+      "label": {
+        "en": "getPaymentMethodsRequest"
+      },
+      "type": {
+        "name": "String"
+      },
+      "inputHint": "MultiLine",
+      "required": false
+    },
+    {
+      "name": "getVaultTokenRequest",
+      "label": {
+        "en": "getVaultTokenRequest"
+      },
+      "required": false,
+      "type": {
+        "name": "String"
+      },
+      "inputHint": "MultiLine"
+    },
+    {
+      "name": "getStandalone3dsTokenRequest",
+      "label": {
+        "en": "getStandalone3dsTokenRequest"
+      },
+      "required": false,
+      "type": {
+        "name": "String"
+      },
+      "inputHint": "MultiLine"
+    },
+    {
+      "name": "getStandalone3dsTokenResponse",
+      "label": {
+        "en": "getStandalone3dsTokenResponse"
+      },
+      "type": {
+        "name": "String"
+      },
+      "inputHint": "MultiLine",
+      "required": false
+    },
+    {
+      "name": "makePreChargeRequest",
+      "label": {
+        "en": "makePreChargeRequest"
+      },
+      "required": false,
+      "type": {
+        "name": "String"
+      },
+      "inputHint": "MultiLine"
+    },
+    {
+      "name": "makePreChargeResponse",
+      "label": {
+        "en": "makePreChargeResponse"
+      },
+      "required": false,
+      "type": {
+        "name": "String"
+      },
+      "inputHint": "MultiLine"
+    },
+    {
+      "name": "getPaymentMethodsResponse",
+      "label": {
+        "en": "getPaymentMethodsResponse"
+      },
+      "required": false,
+      "type": {
+        "name": "String"
+      },
+      "inputHint": "MultiLine"
+    },
+    {
+      "name": "getVaultTokenResponse",
+      "label": {
+        "en": "getVaultTokenResponse"
+      },
+      "type": {
+        "name": "String"
+      },
+      "inputHint": "MultiLine",
+      "required": false
+    },
+    {
+      "name": "makePaymentRequest",
+      "label": {
+        "en": "makePaymentRequest"
+      },
+      "type": {
+        "name": "String"
+      },
+      "inputHint": "MultiLine",
+      "required": false
+    },
+    {
+      "name": "makePaymentResponse",
+      "label": {
+        "en": "makePaymentResponse"
+      },
+      "type": {
+        "name": "String"
+      },
+      "inputHint": "MultiLine",
+      "required": false
+    },
+    {
+      "name": "RefundedAmount",
+      "label": {
+        "en": "RefundedAmount"
+      },
+      "type": {
+        "name": "Number"
+      },
+      "required": false,
+      "inputHint": "SingleLine"
+    },
+    {
+      "name": "PaymentExtensionRequest",
+      "label": {
+        "en": "Payment request"
+      },
+      "type": {
+        "name": "String"
+      },
+      "inputHint": "MultiLine",
+      "required": false
+    },
+    {
+      "name": "PaymentExtensionResponse",
+      "label": {
+        "en": "Payment response"
+      },
+      "type": {
+        "name": "String"
+      },
+      "inputHint": "MultiLine",
+      "required": false
+    }
+
+  ]
+}
