@@ -4,6 +4,8 @@ import getVaultTokenHandler from './get-vault-token.handler.js'
 import getPaymentMethodsHandler from './get-payment-methods.handler.js'
 import updatePaymentStatusHandler from './update-payment-status.handler.js'
 import makePreChargeHandler from './make-pre-chrage.handler.js'
+import getStandaloneTokenHandler from './get-standalone-3ds-token.handler.js'
+
 import c from "../config/constants.js";
 import {
     deleteCustomFieldAction
@@ -109,19 +111,16 @@ function _getPaymentHandlers(paymentObject) {
     const customFields = paymentObject.custom.fields
 
 
-    if (
-        customFields.getPaymentMethodsRequest &&
-        !customFields.getPaymentMethodsResponse
-    ) {
-        handlers.push(getPaymentMethodsHandler)
-    }
-
     if (customFields.makePaymentRequest && !customFields.makePaymentResponse) {
         handlers.push(makePaymentHandler)
     }
 
     if (customFields.getVaultTokenRequest && !customFields.getVaultTokenResponse) {
         handlers.push(getVaultTokenHandler)
+    }
+
+    if (customFields.getStandalone3dsTokenRequest && !customFields.getStandalone3dsTokenResponse) {
+        handlers.push(getStandaloneTokenHandler)
     }
 
     return handlers

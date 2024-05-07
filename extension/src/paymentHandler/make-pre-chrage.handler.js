@@ -11,7 +11,7 @@ async function execute(paymentObject) {
         return {
             actions: [
                 {
-                    action: "makePreChrage",
+                    action: c.CTP_INTERACTION_PAYMENT_EXTENSION_REQUEST,
                     transactionId: request.transactionId,
                     state: "Failure"
                 }

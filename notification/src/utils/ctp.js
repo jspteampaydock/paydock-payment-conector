@@ -108,7 +108,17 @@ async function setUpClient(config) {
     fetchById(uri, id) {
       return ctpClient.execute(this.buildRequestOptions(uri.byId(id).build()))
     },
-
+    fetchByContainerAndKey(uri, container, key) {
+      return ctpClient.execute(this.buildRequestOptions(uri.byContainerAndKey(container, key).build()))
+    },
+    deleteByContainerAndKey(uri, container, key) {
+      return ctpClient.execute(
+          this.buildRequestOptions(
+              uri.byContainerAndKey(container, key).build(),
+              'DELETE',
+          ),
+      )
+    },
     fetchByKey(uri, key) {
       return ctpClient.execute(this.buildRequestOptions(uri.byKey(key).build()))
     },

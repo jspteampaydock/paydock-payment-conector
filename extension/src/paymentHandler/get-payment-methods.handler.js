@@ -12,15 +12,16 @@ async function execute(paymentObject) {
     )
     let CommerceToolsUserId = null;
     if(paymentExtensionRequest.request){
-        CommerceToolsUserId = paymentExtensionRequest.CommerceToolsUserId
+        CommerceToolsUserId = paymentExtensionRequest.request.CommerceToolsUserId
     }
-    const paydockCredentials = await config.getPaydockConfig();
+    const paydockCredentials = await config.getPaydockConfig('all', true);
     let connection = {};
     if (paydockCredentials.sandbox.sandbox_mode === "Yes") {
         connection = paydockCredentials.sandbox;
     } else {
         connection = paydockCredentials.live;
     }
+
 
     const savedCredentials = {};
     if (CommerceToolsUserId) {
@@ -34,6 +35,7 @@ async function execute(paymentObject) {
             }
         }
     }
+
     const responseData = {
         sandbox_mode: paydockCredentials.sandbox.sandbox_mode,
         api_credentials: {

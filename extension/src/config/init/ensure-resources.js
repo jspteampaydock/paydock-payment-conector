@@ -1,7 +1,6 @@
 import {
   ensurePaymentCustomType,
-  ensureInterfaceInteractionCustomType,
-  ensureTransactionCustomType,
+  ensureCustomerVaultTokens,
 } from './ensure-custom-type.js'
 import { ensureApiExtensions } from './ensure-api-extensions.js'
 
@@ -9,8 +8,7 @@ function ensureCustomTypes(ctpClient, ctpProjectKey) {
 
   return Promise.all([
     ensurePaymentCustomType(ctpClient, ctpProjectKey),
-    ensureInterfaceInteractionCustomType(ctpClient, ctpProjectKey),
-    ensureTransactionCustomType(ctpClient, ctpProjectKey),
+    ensureCustomerVaultTokens(ctpClient, ctpProjectKey),
   ])
 }
 

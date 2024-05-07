@@ -45,6 +45,7 @@ async function createCtpClient({
         maskSensitiveHeaderData: true,
         host: apiUrl,
         enableRetry: true,
+        disableCache: true,
         fetch,
     })
 

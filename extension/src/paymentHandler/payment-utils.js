@@ -1,3 +1,4 @@
+import c from '../config/constants.js'
 
 function createSetCustomFieldAction(name, response) {
     if(typeof response === 'object'){
@@ -21,20 +22,20 @@ function deleteCustomFieldAction(name) {
 
 
 function getPaydockStatus(paymentMethod, responseBodyJson) {
-    let paydockStatus = 'paydock-pending';
+    let paydockStatus =  c.STATUS_TYPES.PENDING;
     switch (paymentMethod) {
         case 'bank_account':
-            paydockStatus = responseBodyJson.status === 'requested' ? 'paydock-requested' : 'paydock-failed';
+            paydockStatus = responseBodyJson.status === 'requested' ? c.STATUS_TYPES.REQUESTED : c.STATUS_TYPES.FAILED;
             break;
         case 'cart':
             if (responseBodyJson.status === 'complete') {
-                paydockStatus = responseBodyJson.capture ? 'paydock-paid' : 'paydock-authorize';
+                paydockStatus = responseBodyJson.capture ? c.STATUS_TYPES.PAID : c.STATUS_TYPES.AUTHORIZE;
             } else {
-                paydockStatus = 'paydock-failed';
+                paydockStatus = c.STATUS_TYPES.FAILED;
             }
             break;
         default:
-            paydockStatus = 'paydock-pending';
+            paydockStatus = c.STATUS_TYPES.PENDING;
     }
     return paydockStatus
 }

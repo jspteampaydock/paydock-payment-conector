@@ -1,14 +1,14 @@
 {
   "key": "paydock-components-payment-type",
   "name": {
-    "en": "commercetools paydock integration payment custom type based on web components"
+    "en": "Commercetools paydock integration"
   },
   "resourceTypeIds": ["payment"],
   "fieldDefinitions": [
     {
       "name": "commercetoolsProjectKey",
       "label": {
-        "en": "commercetoolsProjectKey"
+        "en": "Commercetools project key"
       },
       "type": {
         "name": "String"
@@ -56,6 +56,10 @@
           {
             "key": "paydock-failed",
             "label": "Fail via Paydock"
+          },
+          {
+            "key": "paydock-received",
+            "label": "Received via Paydock"
           }
         ]
       },
@@ -64,7 +68,7 @@
     {
       "name": "PaydockTransactionId",
       "label": {
-        "en": "paydock transaction ID"
+        "en": "Paydock transaction ID"
       },
       "required": false,
       "type": {
@@ -75,7 +79,7 @@
     {
       "name": "PaydockPaymentType",
       "label": {
-        "en": "payment type"
+        "en": "Payment type"
       },
       "required": false,
       "type": {
@@ -86,7 +90,7 @@
     {
       "name": "CommerceToolsUserId",
       "label": {
-        "en": "commerce tools user id"
+        "en": "Commerce tools user id"
       },
       "required": false,
       "type": {
@@ -130,7 +134,7 @@
     {
       "name": "getPaymentMethodsRequest",
       "label": {
-        "en": "getPaymentMethodsRequest"
+        "en": "Payment Methods Request"
       },
       "type": {
         "name": "String"
@@ -141,7 +145,7 @@
     {
       "name": "getVaultTokenRequest",
       "label": {
-        "en": "getVaultTokenRequest"
+        "en": "Vault token request"
       },
       "required": false,
       "type": {
@@ -152,7 +156,7 @@
     {
       "name": "getStandalone3dsTokenRequest",
       "label": {
-        "en": "getStandalone3dsTokenRequest"
+        "en": "Standalone 3ds token request"
       },
       "required": false,
       "type": {
@@ -163,7 +167,7 @@
     {
       "name": "getStandalone3dsTokenResponse",
       "label": {
-        "en": "getStandalone3dsTokenResponse"
+        "en": "Standalone 3ds Token Response"
       },
       "type": {
         "name": "String"
@@ -172,42 +176,9 @@
       "required": false
     },
     {
-      "name": "makePreChargeRequest",
-      "label": {
-        "en": "makePreChargeRequest"
-      },
-      "required": false,
-      "type": {
-        "name": "String"
-      },
-      "inputHint": "MultiLine"
-    },
-    {
-      "name": "makePreChargeResponse",
-      "label": {
-        "en": "makePreChargeResponse"
-      },
-      "required": false,
-      "type": {
-        "name": "String"
-      },
-      "inputHint": "MultiLine"
-    },
-    {
-      "name": "getPaymentMethodsResponse",
-      "label": {
-        "en": "getPaymentMethodsResponse"
-      },
-      "required": false,
-      "type": {
-        "name": "String"
-      },
-      "inputHint": "MultiLine"
-    },
-    {
       "name": "getVaultTokenResponse",
       "label": {
-        "en": "getVaultTokenResponse"
+        "en": "Vault token response"
       },
       "type": {
         "name": "String"
@@ -218,7 +189,7 @@
     {
       "name": "makePaymentRequest",
       "label": {
-        "en": "makePaymentRequest"
+        "en": "Payment request"
       },
       "type": {
         "name": "String"
@@ -229,7 +200,7 @@
     {
       "name": "makePaymentResponse",
       "label": {
-        "en": "makePaymentResponse"
+        "en": "Payment response"
       },
       "type": {
         "name": "String"
@@ -240,7 +211,7 @@
     {
       "name": "RefundedAmount",
       "label": {
-        "en": "RefundedAmount"
+        "en": "Refunded amount"
       },
       "type": {
         "name": "Number"
@@ -251,7 +222,7 @@
     {
       "name": "PaymentExtensionRequest",
       "label": {
-        "en": "Payment request"
+        "en": "Payment extension request"
       },
       "type": {
         "name": "String"
@@ -262,7 +233,7 @@
     {
       "name": "PaymentExtensionResponse",
       "label": {
-        "en": "Payment response"
+        "en": "Payment extension response"
       },
       "type": {
         "name": "String"

@@ -6,6 +6,16 @@
   },
   {
     "type": "webhook",
+    "event": "standalone_fraud_check_in_review_approved",
+    "transaction_only": false
+  },
+  {
+    "type": "webhook",
+    "event": "standalone_fraud_check_in_review_declined",
+    "transaction_only": false
+  },
+  {
+    "type": "webhook",
     "event": "standalone_fraud_check_in_review_async_approved",
     "transaction_only": false
   },
@@ -92,6 +102,11 @@
   {
     "type": "webhook",
     "event": "transaction_success",
+    "transaction_only": false
+  },
+  {
+    "type": "webhook",
+    "event": "transaction_failure",
     "transaction_only": false
   }
 ]

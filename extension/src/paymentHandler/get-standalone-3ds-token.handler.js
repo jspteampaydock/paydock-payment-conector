@@ -8,7 +8,6 @@ async function execute(paymentObject) {
     const getStandalone3dsTokenRequestObj = JSON.parse(
         paymentObject.custom.fields.getStandalone3dsTokenRequest,
     )
-
     const requestBodyJson = JSON.parse(paymentObject?.custom?.fields?.getStandalone3dsTokenRequest);
     const response = await createStandalone3dsToken(requestBodyJson)
     if (response.status === 'Failure') {

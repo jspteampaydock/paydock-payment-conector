@@ -15,25 +15,14 @@ async function ensurePaymentCustomType(ctpClient, projectKey) {
   )
 }
 
-async function ensureInterfaceInteractionCustomType(ctpClient, projectKey) {
-  const interfaceInteractionType = await utils.readAndParseJsonFile(
-    'resources/payment-interface-interaction-type.json',
+async function ensureCustomerVaultTokens(ctpClient, projectKey) {
+  const сustomerVaultTokens = await utils.readAndParseJsonFile(
+      'resources/customer-vault-tokens-type.json',
   )
   return syncCustomType(
-    ctpClient,
-    createChildLogger(projectKey),
-    interfaceInteractionType,
-  )
-}
-
-async function ensureTransactionCustomType(ctpClient, projectKey) {
-  const interfaceInteractionType = await utils.readAndParseJsonFile(
-    'resources/payment-transaction-type.json',
-  )
-  return syncCustomType(
-    ctpClient,
-    createChildLogger(projectKey),
-    interfaceInteractionType,
+      ctpClient,
+      createChildLogger(projectKey),
+      сustomerVaultTokens,
   )
 }
 
@@ -86,6 +75,5 @@ async function fetchTypeByKey(ctpClient, key) {
 
 export {
   ensurePaymentCustomType,
-  ensureInterfaceInteractionCustomType,
-  ensureTransactionCustomType,
+  ensureCustomerVaultTokens
 }

@@ -35,6 +35,7 @@ async function addPaydockHttpLog(data) {
         JSON.stringify(logObject)
     )
 }
+
 async function addPaydockLog(data) {
     const logKey = `paydock-log_${Date.now()}`;
     const logObject = {

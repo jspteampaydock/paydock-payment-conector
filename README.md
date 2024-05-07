@@ -1,1 +1,1 @@
-# paydock payment conector
+# paydock commercetools 1

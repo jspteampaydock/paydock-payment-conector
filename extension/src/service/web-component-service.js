@@ -1,6 +1,7 @@
 import fetch from 'node-fetch'
 import {serializeError} from 'serialize-error'
 import config from '../config/config.js'
+import c from '../config/constants.js'
 import httpUtils from "../utils.js";
 import ctp from "../ctp.js";
 import customObjectsUtils from "../utils/custom-objects-utils.js";
@@ -13,16 +14,13 @@ async function makePayment(makePaymentRequestObj) {
     const paymentSource = makePaymentRequestObj.PaydockTransactionId;
     const paymentType = makePaymentRequestObj.PaydockPaymentType;
     const amount = makePaymentRequestObj.amount.value;
+    const currency = makePaymentRequestObj.amount.currency ?? 'AUD';
     const input = makePaymentRequestObj;
     const additionalInformation = input.AdditionalInfo ?? {};
     if (additionalInformation) {
         Object.assign(input, additionalInformation);
         delete input['AdditionalInfo'];
     }
-
-    // const billingInformation = input['BillingInformation'] ?? '';
-    // const shippingInformation = input['ShippingInformation'] ?? '';
-
     let vaultToken = makePaymentRequestObj.VaultToken;
     let status = "Success";
     let paydockStatus = "paydock-pending";
@@ -30,7 +28,6 @@ async function makePayment(makePaymentRequestObj) {
 
     let response = null;
     let chargeId = 0;
-    const currency = 'AUD'; // TODO hardcode
 
     const configurations = await config.getPaydockConfig('connection');
 
@@ -92,7 +89,7 @@ async function makePayment(makePaymentRequestObj) {
     }
 
     if (['PayPal Smart', 'Google Pay', 'Apple Pay', 'Afterpay v2'].includes(paymentType)) {
-        paydockStatus = input.PaydockPaymentStatus === 'paydock-authorize' ? 'paydock-authorize' : 'paydock-paid';
+        paydockStatus = input.PaydockPaymentStatus === 'paydock-authorize' ? c.STATUS_TYPES.AUTHORIZE : c.STATUS_TYPES.PAID;
         response = {
             status: 'Success',
             message: 'Create Charge',
@@ -104,7 +101,7 @@ async function makePayment(makePaymentRequestObj) {
     if (response) {
         status = response.status;
         message = response.message;
-        paydockStatus = response.paydockStatus;
+        paydockStatus = response.paydockStatus ?? paydockStatus;
         chargeId = response.chargeId
     }
 
@@ -745,7 +742,13 @@ async function cardFraudInBuildCharge({configurations, input, amount, currency, 
         authorization: !isDirectCharge
     }
 
+
     const result = await createCharge(request, {directCharge: isDirectCharge});
+    if (result.status === 'Success') {
+        result.paydockStatus = c.STATUS_TYPES.PENDING;
+    } else {
+        result.paydockStatus = c.STATUS_TYPES.FAILED;
+    }
 
     if (result.status === 'Success') {
         if (isDirectCharge) {
@@ -872,8 +875,6 @@ async function cardCustomerCharge({
         authorization: !isDirectCharge
     }
     const result = await createCharge(request, {directCharge: isDirectCharge});
-    console.log(result);
-
     if (result.status === 'Success') {
         if (isDirectCharge) {
             result.paydockStatus = 'paydock-paid';
@@ -1019,11 +1020,10 @@ async function apmFlow({configurations, input, amount, currency, paymentSource, 
 async function createCustomer(data) {
     try {
         const {response} = await callPaydock(`/v1/customers`, data, 'POST');
-
         if (response.status === 201) {
             return {
                 status: "Success",
-                customerId: response.data.resource.data._id
+                customerId: response.resource.data._id
             };
         }
 
@@ -1058,9 +1058,7 @@ async function createCustomerAndSaveVaultToken({configurations, input, vaultToke
     if (type === 'bank_accounts' && configurations.bank_accounts_bank_method_save === 'Customer with Gateway ID' && configurations.bank_accounts_gateway_id) {
         customerRequest.payment_source.gateway_id = configurations.bank_accounts_gateway_id;
     }
-
     const customerResponse = await createCustomer(customerRequest);
-
     if (customerResponse.status === 'Success' && customerResponse.customerId) {
         customerId = customerResponse.customerId;
 
